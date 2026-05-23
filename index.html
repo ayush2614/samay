@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clock</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1b1b3a, #050510 65%);
+      overflow: hidden;
+      color: white;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: float 7s infinite alternate ease-in-out;
+    }
+
+    body::before {
+      background: #ff004c;
+      left: 8%;
+      top: 12%;
+    }
+
+    body::after {
+      background: #00eaff;
+      right: 8%;
+      bottom: 12%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-35px) scale(1.12); }
+    }
+
+    .clock-card {
+      position: relative;
+      width: 380px;
+      padding: 35px 25px;
+      border-radius: 35px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(22px);
+      box-shadow: 0 0 45px rgba(0, 234, 255, 0.18), inset 0 0 25px rgba(255, 255, 255, 0.06);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 18px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #bdfcff;
+      margin-bottom: 22px;
+    }
+
+    .circle-clock {
+      width: 250px;
+      height: 250px;
+      margin: auto;
+      border-radius: 50%;
+      position: relative;
+      background: conic-gradient(from 0deg, #00eaff, #ff004c, #ffe600, #00eaff);
+      padding: 8px;
+      animation: spinGlow 8s linear infinite;
+    }
+
+    @keyframes spinGlow {
+      to { filter: hue-rotate(360deg); }
+    }
+
+    .clock-face {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #070716;
+      position: relative;
+      box-shadow: inset 0 0 25px rgba(0, 234, 255, 0.3);
+    }
+
+    .center-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px #fff;
+      z-index: 10;
+    }
+
+    .hand {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      transform-origin: bottom center;
+      border-radius: 20px;
+    }
+
+    .hour {
+      width: 7px;
+      height: 60px;
+      background: #ffffff;
+      box-shadow: 0 0 12px #fff;
+    }
+
+    .minute {
+      width: 5px;
+      height: 82px;
+      background: #00eaff;
+      box-shadow: 0 0 16px #00eaff;
+    }
+
+    .second {
+      width: 3px;
+      height: 92px;
+      background: #ff004c;
+      box-shadow: 0 0 16px #ff004c;
+    }
+
+    .number {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 18px;
+      color: #dffcff;
+      padding-top: 12px;
+    }
+
+    .n1 { transform: rotate(30deg); }
+    .n1 span { display: inline-block; transform: rotate(-30deg); }
+    .n2 { transform: rotate(60deg); }
+    .n2 span { display: inline-block; transform: rotate(-60deg); }
+    .n3 { transform: rotate(90deg); }
+    .n3 span { display: inline-block; transform: rotate(-90deg); }
+    .n4 { transform: rotate(120deg); }
+    .n4 span { display: inline-block; transform: rotate(-120deg); }
+    .n5 { transform: rotate(150deg); }
+    .n5 span { display: inline-block; transform: rotate(-150deg); }
+    .n6 { transform: rotate(180deg); }
+    .n6 span { display: inline-block; transform: rotate(-180deg); }
+    .n7 { transform: rotate(210deg); }
+    .n7 span { display: inline-block; transform: rotate(-210deg); }
+    .n8 { transform: rotate(240deg); }
+    .n8 span { display: inline-block; transform: rotate(-240deg); }
+    .n9 { transform: rotate(270deg); }
+    .n9 span { display: inline-block; transform: rotate(-270deg); }
+    .n10 { transform: rotate(300deg); }
+    .n10 span { display: inline-block; transform: rotate(-300deg); }
+    .n11 { transform: rotate(330deg); }
+    .n11 span { display: inline-block; transform: rotate(-330deg); }
+    .n12 { transform: rotate(0deg); }
+
+    .digital-time {
+      margin-top: 28px;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 0 18px rgba(0, 234, 255, 0.8);
+    }
+
+    .date {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #d5d5ff;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      margin-top: 22px;
+      padding: 10px 18px;
+      display: inline-block;
+      border-radius: 50px;
+      background: rgba(0, 234, 255, 0.12);
+      border: 1px solid rgba(0, 234, 255, 0.35);
+      color: #bdfcff;
+      font-size: 13px;
+    }
+
+    @media (max-width: 430px) {
+      .clock-card {
+        width: 92%;
+        padding: 28px 18px;
+      }
+
+      .circle-clock {
+        width: 220px;
+        height: 220px;
+      }
+
+      .digital-time {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-card">
+    <div class="title">समय चक्र</div>
+
+    <div class="circle-clock">
+      <div class="clock-face">
+        <div class="number n12"><span>12</span></div>
+        <div class="number n1"><span>1</span></div>
+        <div class="number n2"><span>2</span></div>
+        <div class="number n3"><span>3</span></div>
+        <div class="number n4"><span>4</span></div>
+        <div class="number n5"><span>5</span></div>
+        <div class="number n6"><span>6</span></div>
+        <div class="number n7"><span>7</span></div>
+        <div class="number n8"><span>8</span></div>
+        <div class="number n9"><span>9</span></div>
+        <div class="number n10"><span>10</span></div>
+        <div class="number n11"><span>11</span></div>
+
+        <div class="hand hour" id="hourHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="hand second" id="secondHand"></div>
+        <div class="center-dot"></div>
+      </div>
+    </div>
+
+    <div class="digital-time" id="digitalTime">00:00:00</div>
+    <div class="date" id="dateText">Loading date...</div>
+    <div class="tagline">वक़्त कभी रुकता नहीं...</div>
+  </div>
+
+  <script>
+    const hourHand = document.getElementById("hourHand");
+    const minuteHand = document.getElementById("minuteHand");
+    const secondHand = document.getElementById("secondHand");
+    const digitalTime = document.getElementById("digitalTime");
+    const dateText = document.getElementById("dateText");
+
+    function updateClock() {
+      const now = new Date();
+
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? "PM" : "AM";
+
+      const hourDeg = ((hours % 12) * 30) + (minutes * 0.5);
+      const minuteDeg = (minutes * 6) + (seconds * 0.1);
+      const secondDeg = seconds * 6;
+
+      hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+      minuteHand.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+      secondHand.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+
+      let displayHour = hours % 12;
+      displayHour = displayHour ? displayHour : 12;
+
+      digitalTime.textContent =
+        `${String(displayHour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${ampm}`;
+
+      dateText.textContent = now.toLocaleDateString("en-IN", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
