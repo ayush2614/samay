@@ -1,6 +1,6 @@
 # ⏳ SAMAY — Time Reimagined
 
-A futuristic neon animated clock built using HTML, CSS, and JavaScript featuring a modern glassmorphism UI, real-time analog + digital clock display, glowing neon effects, and smooth animations.
+Samay is a beautifully designed premium smart clock web application built using **HTML, CSS, and JavaScript**, combining elegant UI with practical time tools in one place.
 
 ## 🚀 Live Demo
 🔗 https://ayush2614.github.io/samay/
@@ -10,15 +10,16 @@ A futuristic neon animated clock built using HTML, CSS, and JavaScript featuring
 ## ✨ Features
 
 ✅ Real-time Analog Clock  
-✅ Digital Time Display (AM/PM)  
-✅ Live Date Display  
-✅ Neon Glow UI Design  
-✅ Glassmorphism Interface  
-✅ Smooth Clock Hand Animation  
-✅ Fully Responsive Design  
-✅ Modern Futuristic Theme  
-✅ Pure HTML, CSS & JavaScript  
-✅ Lightweight & Fast Loading  
+✅ Live Digital Clock with Date  
+✅ Alarm with Ringing Sound  
+✅ Alarm OFF Button  
+✅ Clear Alarm Option  
+✅ Countdown Timer (Minutes + Seconds)  
+✅ Stopwatch  
+✅ Premium Glassmorphism UI  
+✅ Neon Glow Animations  
+✅ Mobile Responsive Design  
+✅ Hindi Theme Branding ("समय चक्र")  
 
 ---
 
